@@ -1,0 +1,148 @@
+
+  {% extends "regis/layout.html" %}
+   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+  {% block page%}
+  <a href="{% url 'regis:home' %}" id="home">Explore</a>
+  <a href="{% url 'regis:mysub'%}" id="mysub">My Subject</a>
+  {% endblock %}
+  {% for i in messages%}
+  <div class="alert alert-success" role="alert"> 
+  <center>{{i}}</center>  </div>
+  {%endfor%} 
+
+  
+  {% block content %}
+    <section class="nav">
+        
+     
+    </section >
+    <section class="body">
+        
+       {% for course in courses  %}
+            
+            <ul>
+                <div class="container">
+                    
+                
+                    <div class="header">{{course}}</div>
+                    
+                    <div class="content">
+                        <li>Seat: {{course.number_of_Applicants}}/{{course.seat}}   </li>
+                        <w>
+                            <li>ID: {{course.c_code}}   </li>
+                            <li>Year: {{course.semeter}}</li>
+                        </w>
+                        
+                        
+                        
+                    </div>
+                    {% if course.number_of_Applicants == course.seat %}
+                        <p class="enroll"><a id="full">Class is full</a></p>
+                    {% else %}
+                        {%if course.status != 1 %}
+                          <p class="enroll"><a id="full">close</a></p>
+                        {%else%}
+                          <p class="enroll"><a href="{% url 'regis:regis' course.id %}" id="enroll">enroll</a></p>
+                          {% endif %}
+                    {% endif %}
+                </div>
+                
+            </ul>    
+        {% endfor %}
+            
+      
+    
+    </section>
+
+<form class="row gx-3 gy-2 align-items-center" action="/regis/" method="post">
+  {% csrf_token %}
+  
+  ค้นหา  :    รหัสวิชา  : {{a1}}   &nbsp;&nbsp;&nbsp;
+  {%if a2 != "0"%}
+  สำหรับชั้นปี   :   {{a2}}
+  {%endif%}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <div class="col-sm-3">
+    
+
+    
+    <input type="text" class="form-control" name="a1" placeholder="รหัสวิชา">
+  </div>  
+  <div class="col-sm-3">
+    <select class="form-select" name="a2">
+      <option value="0" selected>เลือกชั้นปี</option>
+      <option value="1">ชั้นปีที่1</option>
+      <option value="2">ชั้นปีที่2</option>
+      <option value="3">ชั้นปีที่3</option>
+    <option value="4">ชั้นปีที่4</option>
+    </select>
+  </div>
+</div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary" >Submit</button>
+  </div>
+</form>
+{{a1}}  {{a2}}
+
+<table class="table table-dark table-hover">
+  <thead>
+    <tr>
+      <th scope="col">&nbsp;&nbsp;#</th>
+      <th scope="col">รหัสวิชา</th>
+      <th scope="col">ชื่อวิชา</th>
+      <th scope="col">ปีการศึกษา</th>  
+    <th scope="col">สำหรับชั้นปี</th>
+    <th scope="col">ที่นั่ง</th>   
+    <th scope="col">สถานะ</th>
+    <th scope="col">หมายเหตุ</th>
+    <th scope="col">  </th>
+    </tr>
+  </thead>
+  <tbody>
+  <!-- {{my_list}} -->
+  {% for i in data2 %}
+      <tr>
+      <td>&nbsp;&nbsp;{{forloop.counter}}</td>
+      <td>{{i.c_code}}</td>
+      <td>{{i.c_name}}</td>
+      <td>{{i.semeter}}</td>
+      <td>{{i.for_year}}</td>
+      <td>{{i.number_of_Applicants}}/{{i.seat}}</td>
+
+<!--    {%if i.Sit > i.Sitting %}
+    {{sit_temp}} = {{1}}
+    {%else%}
+    {{sit_temp}} = {{0}}
+    {%endif%}   -->
+    {% if i.status == 1 and year >= i.for_year %}
+      <td style="color:#AFE1AF;">ลงทะเบียนได้</td>
+    {%else%}
+      <td style="color:Tomato;">ไม่สามารถลงทะเบียนได้</td>
+    {%endif%}
+    
+
+    
+    {% if i.status == 0%}
+      <td>ปิดรับแล้ว</td>
+    {%else%}
+      {% if i.status == 2%}
+      <td>เต็ม</td>
+      {%else%}
+      <td>huh</td>
+      {%endif%}
+    {%endif%}
+
+    <td>
+    <a href = "course/{{i.id}}/">คลิกเพื่อดู</a>
+    </a></td>
+
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>
+
+  {% endblock %}
+
+

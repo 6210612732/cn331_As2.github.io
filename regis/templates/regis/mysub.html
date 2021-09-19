@@ -1,0 +1,47 @@
+
+  {% extends "regis/layout.html" %}
+  {% block page%}
+  <a href="{% url 'regis:home' %}" id="home2">Explore</a>
+  <a href="{% url 'regis:mysub'%}" id="mysub2">My Subject</a>
+  {% endblock %}
+
+
+  
+  {% block content %}
+    <section class="nav">
+       
+    
+    </section>
+
+    <section class="body">
+        
+      {% for course in courses  %}
+            
+       <ul>
+           <div class="container">
+               
+           
+               <div class="header">{{course}}</div>
+               
+               <div class="content">
+                        <li>Seat: {{course.number_of_Applicants}}/{{course.seat}}   </li>
+                   <w>
+                       
+                       <li>ID: {{course.c_code}}   </li>
+                       <li>Year: {{course.semeter}}</li>
+                   </w>
+                   
+                   
+                   
+               </div>
+               <p class="enroll"><a href="{% url 'regis:cancel' course.id 1 %}" id="cancel">cancel</a></p>
+               
+           </div>
+           
+       </ul>    
+        {% endfor %}
+      
+    
+    </section>
+  {% endblock %}
+
