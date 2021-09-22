@@ -23,6 +23,7 @@ cs50==7.0.2
 cssselect2==0.4.1
 cycler==0.10.0
 distlib==0.3.2
+django
 django-heroku
 docutils==0.15.2
 EditorConfig==0.12.3
