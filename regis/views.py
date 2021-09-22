@@ -20,7 +20,8 @@ def index(request):
     year = 0
     temp = User.objects.all().filter(id=request.user.id)
     temp2 = temp.values_list('email')
-    if temp2:
+    temp3 = int(temp2)
+    if temp3:
         year = temp2[0][0]
         data = Course.objects.exclude(student=request.user.id).filter(for_year=year)
     else:
