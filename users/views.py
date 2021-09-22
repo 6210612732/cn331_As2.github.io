@@ -48,3 +48,6 @@ def logout_view(request):
     logout(request)
     return render(request, "users/login.html")
 
+def wel(request):
+    return render(request, "users/welcome.html")
+

@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path,include
 from users import views as views1
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('regis/', include("regis.urls")),
