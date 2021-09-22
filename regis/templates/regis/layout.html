@@ -7,7 +7,7 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="/regis/static/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" croorigin>
     <link href="https://fonts.googleapis.com/c2?family=Niramit&family=Roboto&display=swap" rel="stylesheet">
@@ -20,15 +20,15 @@
     <a2 id="user">Welcome  &nbsp {{user.first_name}} {{user.last_name}}</a2>
     {% block page%}
 
-    {% endblock %} 
-    
+    {% endblock %}
+
     <a href="{% url 'users:logout' %}" id='logout'>log out</a>
   </header>
         {% block content %}
 
-        {% endblock %} 
-   
- 
+        {% endblock %}
+
+
 
 </body>
 
