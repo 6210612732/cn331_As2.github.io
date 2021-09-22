@@ -12,17 +12,16 @@ def index(request):
     #data_student = Student.objects.get(pk=2)
     #non_course = Course.objects.exclude(enroll=data_student).all  #show all of courses that member doesnt enroll
     #return render(request, "regis/mysub.html" , {'courses':non_course})
-    a1=''
-    a2=0
+
     a1=request.POST.get('a1', '');
     a2=request.POST.get('a2', 0);
 
     year = 0
     temp = User.objects.all().filter(id=request.user.id)
     temp2 = temp.values_list('email')
-    temp3 = int(temp2)
+    temp3 = int(temp2[0][0])
     if temp3:
-        year = temp2[0][0]
+        year = temp3
         data = Course.objects.exclude(student=request.user.id).filter(for_year=year)
     else:
         data = Course.objects.exclude(student=request.user.id) #.filter(year=year[0][0]) # เอาช่อง isstaffเก็บชั้นปีละกัน
