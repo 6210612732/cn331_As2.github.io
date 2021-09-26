@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
 from django.http import HttpResponse
+from users.models import Student
 # Create your views here.
 
 
@@ -48,6 +49,54 @@ def logout_view(request):
     logout(request)
     return render(request, "users/login.html")
 
+
 def wel(request):
     return render(request, "users/welcome.html")
 
+
+def signup(request):
+    return render(request, "users/signup.html")
+
+
+def adduser(request):
+  #  ausername=request.POST['a1']
+  #  aemail=request.POST['a2']
+  #  apassword=request.POST['a3']
+  #  arepassword=request.POST['a4']  
+    check = 1 
+    message = ""
+    ausername=request.POST.get('a1', False);
+    aemail=request.POST.get('a2', False);
+    apassword=request.POST.get('a3', False);
+    arepassword=request.POST.get('a4', False);
+    first=request.POST.get('a5', False);
+    last=request.POST.get('a6', False);
+    year=request.POST.get('a7', False);
+    
+#"""    te = Student.objects.all().filter(username=ausername)
+    
+#    if te :
+#        check = 0
+#        message = "username already exists"
+#        messages.info(request,message)  """
+
+    if apassword != arepassword :
+        check = 0
+        message = "pass and repass doesn't match"
+        messages.info(request,message)  
+        
+    if check == 1 :
+        user = User.objects.create_user('ausername', 'aemail', 'apassword')
+        tempp = Student.objects.all().filter(username=ausername)
+        temp2 = tempp.values_list('id')
+        temp3 = int(temp2[0][0])
+   #     adder = Student(STID=temp3,
+   #             college_year=year,
+   #             Gpax=0,                            
+   #             )                
+   #     adder.save()        
+        messages.info(request,'เพิ่มผู้ใช้สำเร็จ')
+        return redirect('login',)
+    else :
+        return redirect('login')
+ 

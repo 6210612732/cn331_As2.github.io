@@ -209,7 +209,7 @@ body section ul div.container div.content{
 
 body section ul div.container w li{
     list-style: none;
-    padding-left: 50px;
+    padding-left: 30px;
    
 }    
 
@@ -255,7 +255,7 @@ body section ul div.container button{
 
 
 .login{
-    padding-left: 600px;
+    padding-left: 150px;
     width: 200px;
     display: flex;
     flex-wrap: wrap;

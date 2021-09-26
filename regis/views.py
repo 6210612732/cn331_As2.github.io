@@ -2,13 +2,13 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User,auth
-
+from .models import Course
+from users.models import Student
 
 # Create your views here.
 
 
-from .models import Course
-from users.models import Student
+
 def index(request):
     #data_student = Student.objects.get(pk=2)
     #non_course = Course.objects.exclude(enroll=data_student).all  #show all of courses that member doesnt enroll

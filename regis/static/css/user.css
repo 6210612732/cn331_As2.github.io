@@ -1,0 +1,74 @@
+
+
+body{
+    font-family: 'Niramit', sans-serif;
+    margin: 0;
+   
+}
+
+
+.login{
+    padding-top: 150px;
+    padding-left: 750px;
+    width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+  
+}
+ .filltitle{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 20px;
+ }
+
+ .fillbox{
+     border-radius: 20px;
+     padding: 10px 20px;
+     border: none;
+     outline: none;
+     box-shadow: inset 0px -2px 10px rgba(0, 0, 0, 0.4);
+ }
+
+.button{
+    padding-top: 50px;
+    padding-left: 800px;
+}
+
+
+.info{
+    
+    padding-top: 200px;
+    padding-left: 700px;
+
+    
+   
+}
+
+
+.info div{
+    border-radius: 50px;
+    width: 500px;
+    height: 500px;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+    
+   
+}
+
+
+.info div li{
+    font-size: 22px;
+    list-style: none;
+    padding-left: 70px;
+    padding-top: 15px;
+    display: flex;
+    height: 45px;
+
+}
+
+.info div li p{
+   padding-right: 20px;
+   
+}
+
