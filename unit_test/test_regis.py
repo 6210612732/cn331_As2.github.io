@@ -26,13 +26,14 @@ class ProjectTestRespond_register(TestCase):
 
 
     def test_register_index(self):
-        # will redirect to login page
+        # redirect to register index
         c = Client()
         response = c.get(reverse('regis:home'))
         self.assertEqual(response.status_code, 200)
 
 
     def test_MySubject(self):
+        # redirect to mysubject page
         c = Client()
         user = User.objects.get(username='user2')
         c.force_login(user)
@@ -40,9 +41,10 @@ class ProjectTestRespond_register(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_course(self):
+        # redirect to course page
         c = Client()
         user = User.objects.get(username='user2')
         c.force_login(user)
         cc = Course.objects.first()
-        response = c.get(redirect('/regis/course/1/'))  # 404 not found ไม่ร้ทำไม
+        response = c.get(redirect('/regis/course/1/'))  # 404 not found
         self.assertEqual(response.status_code, 200)
