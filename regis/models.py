@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 class Term(models.Model):   # 1 physics
     semeter =  models.IntegerField()
     year = models.IntegerField()
-    
+
 
     def __str__(self):
         return f"{self.semeter}/{self.year}"
@@ -25,12 +25,16 @@ class Course(models.Model):
     student =  models.ManyToManyField(User, blank=True,related_name="student")
     for_year = models.IntegerField(null=True)
     year = models.IntegerField(null=True)
-  
-    
+
+
     def __str__(self):
         return f"{self.c_name}"
 
-
+    def course_sit_avilable(self):
+        check = False
+        if number_of_Applicants < seat:
+            check = True
+        return (check)
 
 
 

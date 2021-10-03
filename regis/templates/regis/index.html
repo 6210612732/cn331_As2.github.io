@@ -3,41 +3,41 @@
    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
+
   {% block page%}
   <a href="{% url 'regis:home' %}" id="home">Explore</a>
   <a href="{% url 'regis:mysub'%}" id="mysub">My Subject</a>
   {% endblock %}
   {% for i in messages%}
-  <div class="alert alert-success" role="alert"> 
+  <div class="alert alert-success" role="alert">
   <center>{{i}}</center>  </div>
-  {%endfor%} 
+  {%endfor%}
 
-  
+
   {% block content %}
     <section class="nav">
-        
-     
+
+
     </section >
     <section class="body">
-        
+
        {% for course in courses  %}
-            
+
             <ul>
                 <div class="container">
-                    
-                
+
+
                     <div class="header">{{course}}</div>
-                    
+
                     <div class="content">
                         <li>Seat: {{course.number_of_Applicants}}/{{course.seat}}   </li>
                         <w>
                             <li>ID: {{course.c_code}}   </li>
                             <li>Year: {{course.semeter}}</li>
                         </w>
-                        
-                        
-                        
+
+
+
                     </div>
                     {% if course.number_of_Applicants == course.seat %}
                         <p class="enroll"><a id="full">Class is full</a></p>
@@ -49,27 +49,27 @@
                           {% endif %}
                     {% endif %}
                 </div>
-                
-            </ul>    
+
+            </ul>
         {% endfor %}
-            
-      
-    
+
+
+
     </section>
 {{a1}} <br> {{a2}}
 <form class="row gx-3 gy-2 align-items-center" action="/regis/" method="post">
   {% csrf_token %}
-  
+
   ค้นหา  :    รหัสวิชา  : {{a1}}   &nbsp;&nbsp;&nbsp;
   {%if a2 != "0"%}
   สำหรับชั้นปี   :   {{a2}}
   {%endif%}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <div class="col-sm-3">
-    
 
-    
+
+
     <input type="text" class="form-control" name="a1" placeholder="รหัสวิชา">
-  </div>  
+  </div>
   <div class="col-sm-3">
     <select class="form-select" name="a2">
       <option value="0" selected>เลือกชั้นปี</option>
@@ -92,9 +92,9 @@
       <th scope="col">&nbsp;&nbsp;#</th>
       <th scope="col">รหัสวิชา</th>
       <th scope="col">ชื่อวิชา</th>
-      <th scope="col">ปีการศึกษา</th>  
+      <th scope="col">ปีการศึกษา</th>
     <th scope="col">สำหรับชั้นปี</th>
-    <th scope="col">ที่นั่ง</th>   
+    <th scope="col">ที่นั่ง</th>
     <th scope="col">สถานะ</th>
     <th scope="col">หมายเหตุ</th>
     <th scope="col">  </th>
@@ -116,18 +116,18 @@
     {%else%}
     {{sit_temp}} = {{0}}
     {%endif%}   -->
-    {% if i.status == 1 and year >= i.for_year %}
+    {% if i.status == 1 and year >= i.for_year and i.number_of_Applicants < i.seat %}
       <td style="color:#AFE1AF;">ลงทะเบียนได้</td>
     {%else%}
       <td style="color:Tomato;">ไม่สามารถลงทะเบียนได้</td>
     {%endif%}
-    
 
-    
+
+
     {% if i.status == 0%}
       <td>ปิดรับแล้ว</td>
     {%else%}
-      {% if i.status == 2%}
+      {% if i.status == 2 or i.number_of_Applicants >= i.seat %}
       <td>เต็ม</td>
       {%else%}
       <td>  </td>
