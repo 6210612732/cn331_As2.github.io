@@ -1,4 +1,4 @@
-name: Testing
+name: TestAction
 on: push
 
 jobs:
@@ -9,7 +9,7 @@ jobs:
       - name: Run Django unit tests
         run: |
           pip3 install --user -r requirements.txt
-          python3 REG/manage.py makemigrations
-          python3 REG/manage.py migrate
-          coverage run --source='.' REG/manage.py test
+          python3 manage.py makemigrations
+          python3 manage.py migrate
+          coverage run --source='.' manage.py unit_test
           coverage report
