@@ -47,4 +47,4 @@ class ProjectTestRespond_register(TestCase):
         c.force_login(user)
         cc = Course.objects.first()
         response = c.get(redirect('/regis/course/1/'))  # 404 not found
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 404)
