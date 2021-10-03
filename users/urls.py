@@ -11,5 +11,5 @@ urlpatterns = [
     path('logout',views.logout_view , name="logout"),
     path('wel',views.wel , name="wel"),
     path('signup',views.signup , name="signup"),
-    path('adduser2',views.adduser),
+  #  path('adduser2',views.adduser, name="adduser2"),
 ]

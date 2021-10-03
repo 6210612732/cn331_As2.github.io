@@ -21,7 +21,7 @@ class Course(models.Model):
     number_of_Applicants = models.IntegerField(default=0)
     seat = models.IntegerField()
     status = models.IntegerField(null=True)
-    semeter = models.ForeignKey(Term,on_delete=models.CASCADE,related_name="c_term")
+    semeter = models.ForeignKey(Term,on_delete=models.CASCADE,related_name="c_term",null=True)
     student =  models.ManyToManyField(User, blank=True,related_name="student")
     for_year = models.IntegerField(null=True)
     year = models.IntegerField(null=True)

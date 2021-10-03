@@ -16,7 +16,7 @@ def index(request):
         return render(request, "users/login.html")
     else:
         return HttpResponseRedirect(reverse("regis:home"))
-   
+
 
 
 
@@ -57,13 +57,13 @@ def wel(request):
 def signup(request):
     return render(request, "users/signup.html")
 
-
+"""
 def adduser(request):
   #  ausername=request.POST['a1']
   #  aemail=request.POST['a2']
   #  apassword=request.POST['a3']
-  #  arepassword=request.POST['a4']  
-    check = 1 
+  #  arepassword=request.POST['a4']
+    check = 1
     message = ""
     ausername=request.POST.get('a1', False);
     aemail=request.POST.get('a2', False);
@@ -72,19 +72,19 @@ def adduser(request):
     first=request.POST.get('a5', False);
     last=request.POST.get('a6', False);
     year=request.POST.get('a7', False);
-    
-#"""    te = Student.objects.all().filter(username=ausername)
-    
+
+#    te = Student.objects.all().filter(username=ausername)
+
 #    if te :
 #        check = 0
 #        message = "username already exists"
-#        messages.info(request,message)  """
+#        messages.info(request,message)
 
     if apassword != arepassword :
         check = 0
         message = "pass and repass doesn't match"
-        messages.info(request,message)  
-        
+        messages.info(request,message)
+
     if check == 1 :
         user = User.objects.create_user('ausername', 'aemail', 'apassword')
         tempp = Student.objects.all().filter(username=ausername)
@@ -92,11 +92,11 @@ def adduser(request):
         temp3 = int(temp2[0][0])
    #     adder = Student(STID=temp3,
    #             college_year=year,
-   #             Gpax=0,                            
-   #             )                
-   #     adder.save()        
+   #             Gpax=0,
+   #             )
+   #     adder.save()
         messages.info(request,'เพิ่มผู้ใช้สำเร็จ')
         return redirect('login',)
     else :
         return redirect('login')
- 
+"""
